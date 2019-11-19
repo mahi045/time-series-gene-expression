@@ -1,0 +1,92 @@
+\section{Forecasting Approach}
+\label{sec:forecast}
+We use statistical holtz winter and ARIMA model to compute forecasting on the time series gene data. We have also used deep belief network and long short term memory (LSTM) method for forecasting.
+
+
+\subsection{Holtz winter method}
+Triple Exponential Smoothing, also known as the Holt-Winters method, is one of the many methods or algorithms that can be used to forecast data points in a series, provided that the series is “seasonal”, i.e. repetitive over some period. Although gene expression does not contain seasonal property clearly, we want to observe its performance in forecasting.
+The method calculates a trend line for the data as well as seasonal indices that weight the values in the trend line based on where that time point falls in the cycle of length $L$.
+
+Let $s_t$ represents the smoothed value of the constant part for time $t$. $b_t$ represents the sequence of best estimates of the linear trend that are superimposed on the seasonal changes. $c_t$ is the sequence of seasonal correction factors. $c_t$ is the expected proportion of the predicted trend at any time $t$ mod $L$ in the cycle that the observations take on.
+The output of the algorithm is again written as $x'_{t+k}$, an estimate of the value of gene expression at time $t+k$, $k>0$ based on the raw data up to time $t$.
+\begin{align*}
+    s_0 &= x_0  \\
+    s_t &= \alpha \frac{x_t}{c_{t-L}}+(1-\alpha)(s_{t-1}+b_{t-1}) \\
+    b_t &= \beta(s_t-s_{t-1})+(1-\beta)b_{t-1} \\
+    c_t &= \gamma \frac{x_t}{s_t}+(1-\gamma)c_{t-L}\\
+    x'_{t+k} &= (s_t+kb_t)c_{t-L+1+(k-1) mod L} 
+\end{align*}
+Where $\alpha$ is the data smoothing factor, $\beta$ is the trend smoothing factor, $\gamma$ is the seasonality factor and all $0<\alpha,\beta,\gamma<1$. Inorder to forecast a series of season length $L$, we need at least $2L$ historical data. The general formula for the initial trend estimate $b_0$ is:
+\begin{equation*}
+    b_0 = \frac{1}{L}(\frac{x_{L+1}-x_1}{L}+\frac{x_{L+2}-x_2}{L}+\dots+\frac{x_{L+L}-x_L}{L})
+\end{equation*}
+Setting the initial estimates for the seasonal indices $c_i$ for $i = 1,2,...,L$ is a bit more involved. If $T$ is the number of complete cycles present in data, then:
+\begin{equation*}
+    c_i = \frac{1}{N} \sum_{i=1}^{T}\frac{x_{L(j-1)+i}}{A_j}; \forall i = 1,2,...,L
+\end{equation*}
+Where $A_j$ is the average value of $x$ in the $j$th cycle of  data.
+\begin{equation*}
+    A_j = \frac{\sum_{i=1}^{T}x_{L(j-1)+i}}{L} ; \forall j = 1,2,...,T
+\end{equation*}
+We learn season length $L$ from time series of a gene and the parametric values $\alpha, \beta, \gamma$ have been set by trail and error.
+
+\subsection{ARIMA model}
+An ARIMA( AutoRegressive Integrated Moving Average) \cite{arima} model is a class of statistical models for analyzing and forecasting time series data. This model is a combination of three basic components described as follows.
+\begin{itemize}
+    \item \textbf{AR:} \textit{Autoregression.} A model that uses the dependent relationship between an observation and some number of lagged observations.
+    \item \textbf{I:} \textit{Integrated.} The use of differencing of raw observations (e.g. subtracting an observation from an observation at the previous time step) in order to make the time series stationary.
+    \item \textbf{MA:} \textit{Moving Average.} A model that uses the dependency between an observation and a residual error from a moving average model applied to lagged observations.
+\end{itemize}
+Each of these components are explicitly specified in the model as a parameter. A standard notation is used of $ARIMA(p,d,q)$ where the parameters are substituted with integer values to quickly indicate the specific ARIMA model being used. The parameters of the ARIMA model are defined as follows:
+\begin{itemize}
+    \item \textbf{p:} The number of lag observations included in the model, also called the lag order.
+    \item \textbf{d:} The number of times that the raw observations are differenced, also called the degree of differencing.
+    \item \textbf{q:} The size of the moving average window, also called the order of moving average.
+\end{itemize}
+
+Adopting an ARIMA model for a time series assumes that the underlying process that generated the observations is an ARIMA process. Although this is not obvious for time series of gene expression, it helps to motivate the need to confirm the assumptions of the model in the raw observations and in the residual errors of forecasts from the model.
+
+\subsection{LSTM method}
+The Long Short-Term Memory recurrent neural network \cite{lstm} has the promise of learning long sequences of observations. An sample pseudo code is provided in Algorithm \ref{algo:lstm}.  
+
+\begin{algorithm}
+	\DontPrintSemicolon
+	\SetAlgoLined
+	\caption{$LSTM(X,k)$}
+	\label{algo:lstm}
+	%\KwResult{Write here the result}
+	\SetKwInOut{Input}{Input}\SetKwInOut{Output}{Output}
+	\Input{$X$ time series of a gene, $k$ forecasting period}
+	\Output{Forecasted series of $k$ time period}
+	
+	$X \leftarrow Normalise(X)$  \;
+	$\bar{X},\bar{y} \leftarrow Supervised(X)$   \;
+	$model = LSTMmodel()$ \;
+	$model.fit(\bar{X},\bar{y})$ \;
+	$history = \{\bar{X}\}$ \;
+	$prediction=\{\}$ \;
+	\For{$i=1 \rightarrow k$}{
+		$y \leftarrow model.predict(history)$ \;
+		$history.add(y)$ \;
+		$prediction.add(y)$ \;
+	}
+	\textbf{return} $prediction$  \;
+	
+
+\end{algorithm} 
+ We have to divide each time series in train and test portion. We will use the training part to fit our model and forecast on the testing portion and therefore measure performance with the predicted values and actual values. 
+
+ At first, the whole time series is normalised to (-1,1) because like other neural networks, LSTMs expect data to be within the scale of the activation function used by the network. 
+
+In order to train the model we need to represent data as a supervised form. For a time series problem, we can achieve this by using the observation from the last time step $(t-1)$ as the input and the observation at the current time step $(t)$ as the output. Then we create a LSTM model with two layer each having 100 and 50 neurons respectively and finally add a dense layer for output. We fit the model by optimizing mean square error(mse) loss. Finally for $k$ forecasting period, we predict the next value based on the history. Each predicted value is also added in the history. We use invert scaling to return the series in original form.
+
+
+\subsection{Deep neural network}
+
+ A deep neural network has been used for forecasting ahead of time. Like LSTM the time series is divided in training and testing portion and forecasting in done on test data. We convert the data in (-1,1) scale for the skae of activation function.
+
+We have to  use this neural network as multi layer perceptron regressor since time series can have any values. So we convert the time series in supervised form. Each input is a vector of d dimension of time value $[x_{t-1},x_{t-2},...,x_{t-d}]$ and output is $x_t$. Therefore, we use the past $d$ values to predict current values. 
+
+We add four hidden layers with  5, 10, 15, 20 neurons respectively. We use sigmoid and relu as activation function. First we fit the model using train data by running 10000 iterations. Then we predict the values of test data by updating the history as well.
+
+

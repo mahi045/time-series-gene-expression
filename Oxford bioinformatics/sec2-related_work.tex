@@ -1,0 +1,51 @@
+\section{Related Works}
+\label{sec-related}
+As mentioned above, there are many general clustering
+algorithms that have been applied to gene expression data. These methods only take account time series values as features for partitioning them into clusters. On the other hand, different forecasting anomaly detection and forecasting detection techniques have already been studied in other domains.
+
+\paragraph{\textbf{Time series based gene clustering:}} 
+Ernst et al.\cite{short_time} present an algorithm specifically designed for
+clustering short time series expression data. Their algorithm
+works by assigning genes to a predefined set of model profiles that capture the potential distinct patterns that can be
+expected from the experiment. A software STEM\cite{STEM} has also been implemented to provide interface for different short time series clustering and visualization. 
+
+Liew et al.\cite{period} have
+developed effective computational techniques to address
+Missing value estimation,  periodicity detection
+and  cluster and bicluster analysis for short time series data. In the work of Bhar et al.\cite{Coexp}, they have applied their proposed $\delta$-TRIMAX
+algorithm on a time-series gene expression data in estrogen induced breast cancer cell which  yields
+triclusters that have a mean-squared residue score below a threshold $\delta$. Unequal time interval of time series is handled in the work of Rudea et al\cite{Unequal}. Their proposed clustering method introduces the concept of
+profile alignment which is achieved by minimizing the area between two aligned
+profiles.
+
+Several works also try to solve missing value problems in gene expression. For example
+Bar-Joseph et al.\cite{new approach} present algorithms for time-series gene expression analysis that permit the principled estimation of unobserved timepoints, clustering, and dataset alignment.
+
+Since many works have been already been done in this field, many paper also provide reviews about different methods and relative comparision among them. Bar-Joseph et al.\cite{Bar_Josep} review the computational problems in the current approaches. Androulakis et al.\cite{review paper}  summarize the qualitative characteristics of these approaches, discuss the main challenges that this
+type of complex data present.
+
+\paragraph{\textbf{Time series anomaly detection:}} 
+In general time series analysis has been a popular study for its application in real life scenarios. Different statistical methods have been developed to express time series. With the advancement of Artificial Intelligence and specially Machine Learning approach, this field has got a new momentum. Moreover different library has been developed for time series analysis in popular programming languages like R and Python. 
+
+Dashgupto et al.\cite{immunology} first presents a
+novelty detection algorithm inspired by the negative selection mechanism of the immune system, which discriminates between \textit{self} and \textit{other}. Here \textit{self} is defined
+to be normal data patterns and \textit{other} is any deviation exceeding an allowable variation. For the first time J.Ma et al.\cite{svm} present one class support vector machine (SVM) for novelty detection. The concepts of phase and
+projected phase spaces are also first introduced, which allows us to
+convert a time-series into a set of vectors in the (projected)
+phase spaces. Finally, Chan et al.\cite{multiple} try to model multiple time series for novelty detection in real life monitoring task.
+
+\paragraph{\textbf{Time series forecasting:}}  
+Kime\cite{financial} applies SVM to
+predicting the stock price index from previous values. He shows that SVM is promising methods for the prediction of financial time series because they use a risk function consisting of the empirical error and a regularized term
+which is derived from the structural risk minimization principle. 
+
+The recent advancement of deep learning has provided a new dynamic in time series forecasting. With the help of deep belief network or Long Short Term Memory (LSTM), we do not need to provide features for time series. Deep networks can identify the salient features and characteristics from time series and predict future values more precisely. 
+
+For the first time Qiu et al.\cite{deep learning} propose an ensemble of deep
+learning belief networks (DBN)  for regression and
+time series forecasting. Moreover, they aggregate
+the outputs from various DBNs by a support vector regression
+(SVR) model. Kuremoto et al.\cite{boltzman} present a
+method for time series prediction using Hinton and Salakhutdinov's deep belief nets (DBN) which are
+probabilistic generative neural network composed by multiple layers of restricted Boltzmann machine
+(RBM).

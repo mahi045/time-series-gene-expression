@@ -1,0 +1,10 @@
+\section{Problem Formulation}
+\label{sec-probdefn}
+We formally define the anomaly detection and forecasting problem with respect to time series gene expression data.
+
+\paragraph*{\textbf{Anomaly detection in gene expression:}}
+Given a set of gene expression $G={g_i}$ where each expression is a time series, $g_i=\{x_1,x_2,x_3,\dots,x_T$\} of $T$ time periods, anomaly detection finds out individual time series which do not conform to an expected pattern  like other times  series in the set. An individual time point is said to be anomalous if it exceeds  its expected value by a positive threshold. Therefore, anomaly detection can be considered as a two class classification problem where each expression is identified as 'normal' or anomalous' class.
+
+
+\paragraph*{\textbf{Forecasting in gene expression:}}
+Given a gene $g$ and its time series values $g_T=\{x_1,x_2,x_3,\dots,x_T$\} of $T$ time periods, forecasting of $k$ periods, predict the values $x_{T+1},x_{T+2},\dots,x_{T+k}$ of that time series so that the predicted values conform with the entire series. 

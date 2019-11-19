@@ -1,0 +1,9 @@
+\subsection{Forecasting Performance} 
+We have used four methods, Holtz-Winter, ARIMA, Deep neural network and LSTM for forecasting. In this purpose, we divide the dataset into train and test. We build the model based on training data and compute forecasting on the rest of the portion to compare with the actual test data. We use 10\%, 20\%, 30\% and 40\% of a time series as testing data. 
+
+For performance metric, we have used Root Mean Squared Error (RMSE). Let $x_1, x_2, \dots ,x_k$ are actual values of a time series $X$ and $k$ periods forecasting values are measured as $x'_1, x'_2, \dots ,x'_k$, then RMSE error is defined as,
+\[ RMSE(X) = \sqrt{\sum{\frac{(x_i-x'_i)^2}{k}}}_{i=1}^{k}\]
+
+
+Squaring the forecast error values forces them to be positive; it also has the effect of putting more weight on large errors.
+Very large or outlier forecast errors are squared, which in turn has the effect of dragging the mean of the squared forecast errors out resulting in a larger mean squared error score. In effect, the score gives worse performance to those models that make large wrong forecasts.

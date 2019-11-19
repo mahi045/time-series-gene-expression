@@ -1,0 +1,11 @@
+\subsection{Problem Formulation}
+
+We formally define the anomaly detection and forecasting problem with respect to time series gene expression data.
+
+\paragraph*{\textbf{Anomaly detection in gene expression:}}
+Given a gene $g$ and its time series values $g_T=\{x_1,x_2,x_3,\dots,x_T$\} of $T$ time periods, anomaly detection finds out individual time points which do not conform to an expected pattern or other times in the series. A time point is said to be anomalous if it exceeds  its expected value by a positive threshold. 
+
+Therefore, $x_t$ be the calculated value in time instance $t$ and $x'_t$ be the expected value that fit the entire model, then $x_t$ is said to be anomalous if $|x_t-x'_t|> \delta$; where $\delta$ is the threshold used. The value if $\delta$ is thus crucial and depends on the entire time series.
+
+\paragraph*{\textbf{Forecasting in gene expression:}}
+Given a gene $g$ and its time series values $g_T=\{x_1,x_2,x_3,\dots,x_T$\} of $T$ time periods, forecasting of $k$ periods, predict the values $x_{T+1},x_{T+2},\dots,x_{T+k}$ of that time series so that the predicted values conform with the entire series. 

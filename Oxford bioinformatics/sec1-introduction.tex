@@ -1,0 +1,41 @@
+\section{Introduction}
+Microarray time series gene expression experiments have
+widely used to study a range of biological processes. Examples include 
+as the cell cycle \cite{first}, development \cite{second}, and immune
+response \cite{third}. The Stanford Microarray Database (SMD) \cite{fourth} stores raw and normalized data from microarray experiments, and provides web interfaces for researchers to retrieve, analyze and visualize their data. Ananlyzing time series data has manifold significance such as cell cycle identification, Genetic interaction and knockout, Development understanding, Infection or disease identification and determining correlated genes \cite{Coexp}. 
+
+
+
+
+Having a large number of dataset and resource, most of the papers focus on clustering gene profiling  based on their time series values. Several popular clustering methods have been used to analyze these gene data and use these clusters to identify genome groups. General methods
+for gene expression analysis that are frequently applied to
+time series expression data include popular clustering
+methods such as hierarchical clustering \cite{hierarcial}, k-means clustering \cite{knn}, and self-organizing maps \cite{som}. Different software programs such as Short Time-series Expression Miner (STEM) \cite{STEM} have been implemented for clustering short time series data and visualize them. 
+
+Time series data analysis is also very popular in other domains and different methods and techniques have been invented. Time series data in financial \cite{financial time} and weather prediction has manifold significance. For example, we can analysis the time value of money or demand of a product in future from time series prediction. Weather forecasting and humidity or temperature prediction \cite{weather} have utilization in this regard. Anomaly detection in time series also allow to isolate noise and identify irregular pattern  from trend and seasonal data points.
+
+Microarray based gene expression data are also arranged in time order. For each gene there is a time series which indicate the expression ratio of gene in different time period. Therefore, forecasting and anomaly detection techniques should also be applicable for gene expression data and have many significance. For example anomaly detection can identify anomalous data points in time series and thereby remove noise from gene expression. Moreover, genes can be clustered according to anomalous data points in specific time period which allow us to inspect the behaviour of cell cycle or detect anomalous genes responsible to disease or infection. 
+
+Most gene series are short and also there are many missing values in the time series. Forecasting techniques can also allow us to predict future values of gene expression ratio which can not be experimented and predict the missing data. This approach help us to monitor the development cycle of cell and find out genetic interaction and knock out.  
+
+However, applying the common forecasting or anomaly detection techniques in time series gene data has several limitations and challenge as discussed below.
+
+\begin{itemize}
+    \item Experimental design of gene expression data is different from normal time series data. Here sample rate determination and synchronization among genes are different which lead to unequal time interval. 
+    \item There are also difficulties in data analytic level. Data are noisy in experimentation and data points  replicate \cite{review paper}. Moreover not all points are also available. 
+    \item Most time series in gene expression are very short. Therefore it is difficult to fit these short time periods using statistical or machine learning approach
+    \item There is temporal relation on consecutive data points which can be problematic for anomaly detection.
+    \item Like any other time series, gene data have not any trend or seasonality defined in their expression matrix. Therefore, common forecasting technique is not suitable for gene expression data.
+    \item Time series for each gene expression is different, so we have to define individual model for each gene. Therefore running experiment of large dataset of genes will be costly.
+
+\end{itemize}
+
+In this paper, we try to apply some statistical, machine learning and deep learning based methods for time series gene expression data forecasting and anomaly detection. Since according to our knowledge no prior works have been done for gene expression data in forecasting, we have to rely on the common methods used in normal time series analysis in other domains. Therefore, not all methods show good performance on gene expression data and we compare statistics among them to identify which methods can be further studied for finding efficient techniques specialized for gene expression. In short the contribution of the paper is described as follows.
+
+\begin{itemize}
+    \item We formulate anomaly detection and forecasting problem for time series gene expression.
+    \item We propose two deep learning technique to detect anomalous gene expression and compare their performance with supervised and unsupervised machine learning based methods.
+    \item Several statistical and deep learning based method have utilized to study their performance to forecast time series gene expression. 
+\end{itemize}
+
+The rest of the paper is organized as follows. In section 2, we review some related works about time series gene expression, gene clustering, anomaly detection and forecasting on time series data. In section 3, we formally define our problems presented in this report. In section 4, we describe common anomaly detection methods on time series data.  In section 5, we describe common forecasting methods on time series data. We report about our datasets and experimental results in section 6. Finally, in section 7 we conclude our project work.  
