@@ -1,0 +1,22 @@
+Holtz Winter
+test percent 0.1 avg rmse 0.791681456484
+test percent 0.2 avg rmse 1.40914280703
+test percent 0.3 avg rmse 2.17084968841
+test percent 0.4 avg rmse 2.33926359316
+
+Arima
+test percent 0.1 avg rmse 0.33475605639
+
+Arima
+test percent 0.2 avg rmse 0.477394146881
+Holtz Winter
+test percent 0.1 avg rmse 0.791681456484
+test percent 0.2 avg rmse 1.40914280703
+test percent 0.3 avg rmse 2.17084968841
+test percent 0.4 avg rmse 2.33926359316
+
+Arima
+test percent 0.4 avg rmse 0.624565427152
+
+Arima
+test percent 0.3 avg rmse 0.558983292919

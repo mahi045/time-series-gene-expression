@@ -1,0 +1,16 @@
+
+# of Pegs	4	6	8	10	12	14	16, default disk = 64
+Baseline	73732	2692	1540	1252	932	916	900
+Efficient	38912	1376	784	640	472	464	456
+							
+# of Disks	16	32	64	128	256	512	, default peg = 10
+Baseline	180	436	1252	3300	10308	27780	
+Efficient	96	224	640	1664	5184	13952	
+							
+# of Pegs	3	4	5	6	7	8	, default disk = 20
+Baseline	4194300	1156	444	356	268	260	
+Efficient	4194300	640	252	192	140	136	
+							
+# of Disks	5	10	15	20	25	30	35 ,  default peg = 5
+Baseline	44	124	284	444	764	1084	1404
+Efficient	28	76	156	252	412	572	764

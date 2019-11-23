@@ -1,0 +1,13 @@
+
+Accuracy
+
+dataset		CNN		LSTM 	SVM		One-class SVM
+Patient		78.2	74.45	62.4		51.2
+Yeast		82.5	78.45	60.45		47.4
+
+
+Fscore
+
+dataset		CNN		LSTM 	SVM		One-class SVM
+Patient		72.2	68.45	56.4		41.2
+Yeast		74.5	68.45	50.45		37.4
