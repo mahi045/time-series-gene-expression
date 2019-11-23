@@ -1,12 +1,11 @@
 import matplotlib.pyplot as plt
-from Util import create_dataset
+from Util import create_dataset, create_GSE_dataset
 import numpy as np
 from math import sqrt
 from sklearn.metrics import mean_squared_error
-from anompy.detector.smoothing import TripleExponentialSmoothing
 
-
-DATA = create_dataset()
+DATASET = 'GSE20305_series_matrix.txt' 
+DATA = create_GSE_dataset(DATASET)
 N_GENE = len(DATA)
 N_TIME = len(DATA[0])
 TEST_PERCENT = 0.3
@@ -59,7 +58,7 @@ def triple_exponential_smoothing(series, slen, alpha, beta, gamma, n_preds):
 
 def holtz_winter(series):
 
-    forecasted_series = triple_exponential_smoothing(series=series[:LAST_IDX],slen=18,alpha=0.5,beta=0.1,gamma=0.65,n_preds=N_TIME-LAST_IDX)
+    forecasted_series = triple_exponential_smoothing(series=series[:LAST_IDX],slen=2,alpha=0.4,beta=0.05,gamma=0.4,n_preds=N_TIME-LAST_IDX)
     forecasted_series = series[:LAST_IDX] + forecasted_series[LAST_IDX:]
     rmse = sqrt(mean_squared_error(series[LAST_IDX:],forecasted_series[LAST_IDX:]))
    # print(rmse)
@@ -76,8 +75,8 @@ def main():
     global LAST_IDX
 
     f = open('out.txt','a')
-    f.write('Holtz Winter\n')
-    for TEST_PERCENT in [0.1,0.2,0.3,0.4]:
+    f.write(DATASET + ' - Holtz Winter\n')
+    for TEST_PERCENT in [0.2,0.3,0.4]:
         LAST_IDX = int(np.ceil(N_TIME * (1 - TEST_PERCENT)))
         rmse_list = np.zeros(N_GENE)
         for i in range(N_GENE):

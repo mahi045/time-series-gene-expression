@@ -1,22 +1,82 @@
-Holtz Winter
-test percent 0.1 avg rmse 0.791681456484
-test percent 0.2 avg rmse 1.40914280703
-test percent 0.3 avg rmse 2.17084968841
-test percent 0.4 avg rmse 2.33926359316
-
-Arima
-test percent 0.1 avg rmse 0.33475605639
-
-Arima
-test percent 0.2 avg rmse 0.477394146881
-Holtz Winter
-test percent 0.1 avg rmse 0.791681456484
-test percent 0.2 avg rmse 1.40914280703
-test percent 0.3 avg rmse 2.17084968841
-test percent 0.4 avg rmse 2.33926359316
-
-Arima
-test percent 0.4 avg rmse 0.624565427152
-
-Arima
-test percent 0.3 avg rmse 0.558983292919
+GSE6186_series_matrix.txt - Holtz Winter
+test percent 0.1 avg rmse 0.29795888032497814
+test percent 0.2 avg rmse 0.5374279644053505
+test percent 0.3 avg rmse 0.6550067030973211
+test percent 0.4 avg rmse 0.7907059170803831
+GSE3406_series_matrix.txt - Holtz Winter
+test percent 0.1 avg rmse 0.5172424031468418
+test percent 0.2 avg rmse 0.6959334286886869
+test percent 0.3 avg rmse 0.8714569123101296
+test percent 0.4 avg rmse 1.0955568811298317
+GSE20305_series_matrix.txt - Holtz Winter
+test percent 0.1 avg rmse 477.8022740829296
+test percent 0.2 avg rmse 562.8166216104756
+test percent 0.3 avg rmse 765.6354344613816
+test percent 0.4 avg rmse 854.989827392059
+GSE6186_series_matrix.txt - Arima
+test percent 0.2 avg rmse 0.33868331518214245
+GSE6186_series_matrix.txt - Arima
+test percent 0.1 avg rmse 0.243718818881128
+GSE6186_series_matrix.txt - Arima
+test percent 0.3 avg rmse 0.3621468278850903
+GSE3406_series_matrix.txt - Arima
+test percent 0.1 avg rmse 0.5036553569585897
+GSE3406_series_matrix.txt - Arima
+test percent 0.2 avg rmse 0.6248301966332891
+GSE3406_series_matrix.txt - Arima
+test percent 0.3 avg rmse 0.6334653292154371
+GSE20305_series_matrix.txt - Arima
+test percent 0.2 avg rmse 742.0732290271037
+GSE20305_series_matrix.txt - Arima
+test percent 0.1 avg rmse 668.6499389309544
+LSTM method - GSE6186_series_matrix.txt
+test percent 0.4 avg rmse 0.705034502256596
+NN method - GSE6186_series_matrix.txt
+test percent 0.3 avg rmse  0.7462804204668125
+NN method - GSE6186_series_matrix.txt
+test percent 0.4 avg rmse 0.8788446382346905
+NN method - GSE6186_series_matrix.txt
+test percent 0.4 avg rmse 0.5992657832359012
+GSE1723_series_matrix.txt - Holtz Winter
+test percent 0.1 avg rmse 61.044445067444045
+test percent 0.2 avg rmse 62.28703690227421
+GSE1723_series_matrix.txt - Holtz Winter
+test percent 0.1 avg rmse 59.670001548167136
+test percent 0.2 avg rmse 70.74925982196875
+test percent 0.3 avg rmse 84.07003872871346
+test percent 0.4 avg rmse 82.02466609810163
+LSTM method - GSE6186_series_matrix.txt
+test percent 0.3 avg rmse 0.48785415464759524
+LSTM method - GSE6186_series_matrix.txt
+test percent 0.2 avg rmse  0.5037292609761458
+LSTM method - GSE6186_series_matrix.txt
+test percent 0.1 avg rmse 0.26782879877990323
+NN method - GSE6186_series_matrix.txt
+test percent 0.1 avg rmse  0.327479
+LSTM method - GSE6186_series_matrix.txt
+test percent 0.3 avg rmse 0.48515887821550663
+LSTM method - GSE3406_series_matrix.txt
+test percent 0.1 avg rmse 0.5523005797056845
+LSTM method - GSE1723_series_matrix.txt
+test percent 0.2 avg rmse 62.621931504639505
+LSTM method - GSE1723_series_matrix.txt
+test percent 0.3 avg rmse 137.26593895991982
+LSTM method - GSE1723_series_matrix.txt
+test percent 0.4 avg rmse 100.36309888312012
+LSTM method - GSE20305_series_matrix.txt
+test percent 0.4 avg rmse 908.9874885306162
+GSE20305_series_matrix.txt - Holtz Winter
+test percent 0.2 avg rmse 1518.9688404446574
+test percent 0.3 avg rmse 1876.3779545184766
+GSE20305_series_matrix.txt - Holtz Winter
+test percent 0.2 avg rmse 1563.5745483440064
+test percent 0.3 avg rmse 1879.6741809197113
+test percent 0.4 avg rmse 2364.1539002036793
+LSTM method - GSE20305_series_matrix.txt
+test percent 0.3 avg rmse 571.7947510616374
+LSTM method - GSE3406_series_matrix.txt
+test percent 0.3 avg rmse 0.6275076357950528
+LSTM method - GSE3406_series_matrix.txt
+test percent 0.2 avg rmse 0.6493893990610456
+LSTM method - GSE3406_series_matrix.txt
+test percent 0.4 avg rmse 0.5925096837304314

@@ -1,9 +1,10 @@
 from nnet_ts import *
-from Util import create_dataset
+from Util import create_dataset, create_GSE_dataset
 from matplotlib import pyplot as plt
 from sklearn.metrics import mean_squared_error
 from math import sqrt
-DATA = create_dataset()
+DATASET = 'GSE6186_series_matrix.txt' 
+DATA = create_GSE_dataset(DATASET)
 N_GENE = len(DATA)
 N_TIME = len(DATA[0])
 TEST_PERCENT = 0.3

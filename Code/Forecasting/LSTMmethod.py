@@ -12,9 +12,11 @@ from keras.layers import LSTM
 import numpy as np
 import seaborn as sns
 from sklearn.preprocessing import MinMaxScaler
-from Util import create_dataset
+from Util import create_dataset, create_GSE_dataset
 
-DATA = create_dataset()
+# DATA = create_dataset()
+DATASET = 'GSE3406_series_matrix.txt' 
+DATA = create_GSE_dataset(DATASET)
 N_GENE = len(DATA)
 N_TIME = len(DATA[0])
 TEST_PERCENT = 0.3
@@ -47,11 +49,13 @@ def create_dataset(dataset, look_back=1):
 
 def lstm_method(series):
     # pre-process the data in (-1,1) scale
+    # print(series)
     series = np.array(series)
     values = series.reshape(-1,1)
     values = values.astype('float32')
     scaler = MinMaxScaler(feature_range=(-1, 1))
     scaled = scaler.fit_transform(values)
+
 
     #split data
     train, test = scaled[0:LAST_IDX, :], scaled[LAST_IDX:len(scaled), :]
@@ -110,7 +114,7 @@ def lstm_method(series):
 
 def main():
     global TEST_PERCENT,LAST_IDX,TEST_SIZE
-    # f = open('outLSTM.txt', 'a')
+    f = open('out.txt', 'a')
     #f.write('\nLSTM\n')
     global TEST_PERCENT
     for TEST_PERCENT in [ 0.4]:
@@ -118,18 +122,17 @@ def main():
         TEST_SIZE = N_TIME - LAST_IDX + 1
         rmse_list = []
         sample_size = 100
+        f.write('LSTM method - %s\n' %(DATASET))
         for i in range(sample_size):
-            # f = open('out.txt', 'a')
-            # f.write('Holtz Winter\n')
             print('LSTM GENE no',i)
             #DATA[i] = normalise_series(DATA[i])
             rmse_list.append(lstm_method(DATA[i]))
             print('AVG so far, ', np.average(rmse_list))
 
         print('AVG RMSE: ',np.average(rmse_list))
-        # f.write('test percent ' + str(TEST_PERCENT))
-        # f.write(' avg rmse ' + str(np.average(rmse_list)))
-        # f.write('\n')
+        f.write('test percent ' + str(TEST_PERCENT))
+        f.write(' avg rmse ' + str(np.average(rmse_list)))
+        f.write('\n')
     pyplot.show()
 
 if __name__ == '__main__':

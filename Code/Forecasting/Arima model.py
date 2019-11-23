@@ -1,10 +1,11 @@
 import matplotlib.pyplot as plt
 from statsmodels.tsa.arima_model import  ARIMA
-from Util import create_dataset
+from Util import create_dataset, create_GSE_dataset
 import numpy as np
 from math import sqrt
 from sklearn.metrics import mean_squared_error
-DATA = create_dataset()
+DATASET = 'GSE20305_series_matrix.txt' 
+DATA = create_GSE_dataset(DATASET)
 N_GENE = len(DATA)
 N_TIME = len(DATA[0])
 TEST_PERCENT = 0.3
@@ -42,19 +43,19 @@ def arima_model(index):
 def main():
 
     global TEST_PERCENT,LAST_IDX
-    # f = open('out.txt', 'a')
-    # f.write('\nArima\n')
-    for TEST_PERCENT in [0.1]:
+    f = open('out.txt', 'a')
+    f.write(DATASET + ' - Arima\n')
+    for TEST_PERCENT in [0.3]:
         LAST_IDX = int(np.ceil(N_TIME * (1 - TEST_PERCENT)))
         RMSE_ERROR = list()
         sample_size = 100
         for i in range(sample_size):
             RMSE_ERROR.append(arima_model(i))
-            print('Avf ERRor so far ',np.average(RMSE_ERROR))
+            # print('Avf ERRor so far ',np.average(RMSE_ERROR))
         print('AVG MSE ERROR', np.average(RMSE_ERROR))
-        # f.write('test percent ' + str(TEST_PERCENT))
-        # f.write(' avg rmse ' + str(np.average(RMSE_ERROR)))
-        # f.write('\n')
+        f.write('test percent ' + str(TEST_PERCENT))
+        f.write(' avg rmse ' + str(np.average(RMSE_ERROR)))
+        f.write('\n')
     plt.show()
 
 

@@ -1,9 +1,11 @@
 import numpy as np
 import pandas as pd
+import tensorflow
+from keras.utils import to_categorical
+from sklearn.preprocessing import normalize
+def get_patient_data(file = 'patient_data.txt', normalise=True):   # return gene name, class and values
 
-def get_patient_data(normalise=True):   # return gene name, class and values
-
-    filename = 'patient_data.txt'
+    filename = file
     f = open(filename,'r')
     gene_names = []
     gene_types = []
@@ -21,10 +23,18 @@ def get_patient_data(normalise=True):   # return gene name, class and values
     # print(data.shape)
     # print(data.max(axis=0))
     if normalise:
-        data = data / data.max(axis=0)
+        data = data - data.min()
+        data = data / data.max()
+        assert(np.all(data >= 0) and np.all(data <= 1))
     # print(data)
     return gene_names,gene_types,data
 
+
+def label(labels, n_class=2):
+    y = [0]*len(labels)
+    for i in range(len(labels)):
+        y[i] = to_categorical(int(labels[i]) - 1, n_class, dtype='int8')
+    return np.array(y)
 
 def one_hot(labels, n_class=2):
     y = [0]*len(labels)
@@ -33,7 +43,7 @@ def one_hot(labels, n_class=2):
             y[i] = [1, 0]
         else:             # bad
             y[i] = [0,1]
-    return y
+    return np.array(y)
 
 def get_batches(X, y, batch_size = 100):
     n_batches = len(X) // batch_size
